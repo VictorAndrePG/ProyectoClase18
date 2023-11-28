@@ -15,7 +15,7 @@ class Estudiante(models.Model):
     email = models.EmailField()
 
     def __str__(self):
-        return f"hola: {self.nombre}"
+        return f"Mostrando estudiante: {self.nombre}"
 
 
 class Profesor(models.Model):

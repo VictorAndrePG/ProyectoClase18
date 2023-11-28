@@ -1,0 +1,10 @@
+{% extends 'base.html' %}
+
+{% block cambio %}
+    {% for curso in cursos %}
+        <h6>El curso es de {{curso.nombre}} con camada {{curso.camada}}</h6>
+        <hr>
+
+    {% endfor %}
+
+{% endblock %}

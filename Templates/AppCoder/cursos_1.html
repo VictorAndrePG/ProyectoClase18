@@ -1,0 +1,14 @@
+{% extends 'base.html' %}
+
+{% block cambio %}
+<!--antes de esto no, a partir de aca se incerta-->
+<p>
+    <a href="{% url 'CursoCreate' %}">Crear</a>
+</p>
+    {% for curso in object_list %}
+        <h6>El curso es de {{curso.nombre}} con camada {{curso.camada}}</h6>
+        <hr>
+
+    {% endfor %}
+
+{% endblock %}

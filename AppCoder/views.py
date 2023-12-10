@@ -1,9 +1,28 @@
+from django.contrib.auth.decorators import login_required
+from django.contrib.auth.mixins import LoginRequiredMixin
 from django.shortcuts import render, redirect
+from django.views.generic import ListView, DetailView, CreateView
+
 from AppCoder.models import Curso
 from django.http import HttpResponse
 from AppCoder.forms import CursoForms, BusquedaCursoForm
 
 # Create your views here.
+
+class Cursolist(LoginRequiredMixin, ListView): #para mostrar cursos
+    model = Curso
+    template_name = "AppCoder/cursos_1.html"
+
+class CursoDetalle(DetailView):
+    model = Curso
+    template_name = "AppCoder/cursos_detalle.html"
+
+class CursoCreacion(CreateView):
+    model = Curso
+    success_url = "/app/cursos/listar"
+    template_name = "AppCoder/crear_curso.html"
+    fields = ["nombre","camada"]
+
 
 def mostrar_cursos(request):
     cursos = Curso.objects.all()
@@ -19,6 +38,7 @@ def crear_curso(request):
 
     return redirect("/app/cursos/")  # get
 
+@login_required
 def crear_curso_form(request): #crearemos curso
     if request.method == "POST":
         # Crear curso
